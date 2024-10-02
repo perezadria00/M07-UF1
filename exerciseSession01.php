@@ -1,60 +1,54 @@
 <?php
-
-
-
 session_start(); // Iniciar la sesión
 
+// Inicializar las variables de sesión para el inventario
+if (!isset($_SESSION['milk'])) {
+    $_SESSION['milk'] = 0;
+}
+if (!isset($_SESSION['soda'])) {
+    $_SESSION['soda'] = 0;
+}
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST'){ 
-    
-    $worker = $_POST['name']; 
-    $product = $_POST['product'];
-    $quantity = $_POST['quantity'];
+// Procesar el formulario
+if ($_SERVER['REQUEST_METHOD'] === 'POST') { //Método de la solicitud
+    $worker = $_POST['name'];
+    $product = $_POST['product'];            //Recoger los valores
+    $quantity = (int)$_POST['quantity']; 
 
-    
-    $_SESSION["name"] = $worker; 
-
-    $_SESSION["product"] = $product;
-
-    if (isset($_POST["add"])){
-        switch($product){
+    // Agregar productos        
+    if (isset($_POST["add"])) {
+        switch ($product) {
             case 'milk':
                 $_SESSION['milk'] += $quantity;
                 break;
-                case 'soda':
-                    $_SESSION['soda'] += $quantity;
-                    break;
-                    }
-    }
-
-    if (isset($_POST["remove"])){
-        switch($product){
-            case 'milk':
-                $_SESSION['milk'] -= $quantity;
+            case 'soda':
+                $_SESSION['soda'] += $quantity;
                 break;
-                case 'soda':
-                    $_SESSION['soda'] -= $quantity;
-                    break;
-                    }
+        }
     }
 
+    // Eliminar productos
+    if (isset($_POST["remove"])) {
+        switch ($product) {
+            case 'milk':
+                $_SESSION['milk'] = max(0, $_SESSION['milk'] - $quantity);
+                break;
+            case 'soda':
+                $_SESSION['soda'] = max(0, $_SESSION['soda'] - $quantity);
+                break;
+        }
+    }
 }
-
-
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Supermarket Management</title>
-
 </head>
-
 <body>
-
     <h1>Supermarket Management</h1>
 
     <form method="post">
@@ -77,12 +71,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST'){
 
     <br>
     <h1>Inventory:</h1>
-        Worker: <?php echo $_SESSION['worker'] ?>
-        Milk units:
-        Soda units:
-
-    
-
+    <p>Worker: <?= htmlspecialchars($worker ?? ''); ?></p>
+    <p>Milk units: <?= $_SESSION['milk']; ?></p>
+    <p>Soda units: <?= $_SESSION['soda']; ?></p>
 </body>
-
 </html>
