@@ -10,7 +10,7 @@ if (!isset($_SESSION['soda'])) {
 }
 
 // Procesar el formulario
-if ($_SERVER['REQUEST_METHOD'] === 'POST') { //Método de la solicitud
+if ($_SERVER['REQUEST_METHOD'] === 'POST') { //Método de la petición
     $worker = $_POST['name'];
     $product = $_POST['product'];            //Recoger los valores
     $quantity = (int)$_POST['quantity']; 
