@@ -17,12 +17,12 @@ echo "El resultado de la división -> " . $num1 . " / " . $num2 . " es: " . $div
 
 if ($num1 > $num2) {
 
-    echo "El número " . $num1 . " es mayor que el número " . $num2 . ".";
+    echo "El número " . $num1 . " es mayor que el número " . $num2 . "." . "<br>";
 
 }elseif ($num1 < $num2){
-    echo "El número " . $num1 . " es menor que el número " . $num2  . ".";
+    echo "El número " . $num1 . " es menor que el número " . $num2  . "." . "<br>";
 }else{
-    echo "Ambos números son iguales.";
+    echo "Ambos números son iguales." . "<br>";
 }
 
 //3.  Si las dos variables son valores superiores a 1,  calcula el área del triángulo con base y altura igual a los valores de las variables. 
