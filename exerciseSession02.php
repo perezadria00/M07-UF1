@@ -47,6 +47,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <input type="number" id="nuevo_valor" name="nuevo_valor" required><br><br>
 
         <button type="submit">Modificar valor</button>
+        <button type="reset">Reset</button>
     </form>
 
   
