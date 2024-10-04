@@ -14,12 +14,13 @@
      
 //  Muestra la progresión numérica de los números pares desde 0 hasta el valor de la primera con un bucle for.
 
-        for($i = 0; $i <= $num1; $i++){
+       for($i = 0; $i <= $num1; $i++){
             if ($i % 2 == 0){
-            echo $i . "<br>";
+            echo $i . "<br/>";
           }
         }
 
+       
     
 //Muestra la progresión numérica desde la segunda variable hasta 0 con un bucle while.
 
