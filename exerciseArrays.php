@@ -12,7 +12,7 @@ Muestra los valores del array anterior utilizando foreach.
 $datos_personas = array("Dato 1º" => 'Sara',"Dato 2º" => 'Martínez',"Dato 3º" => 23,"Dato 4º" => 'Barcelona');
 
 foreach($datos_personas as $persona => $datos){
-    echo $datos . "<br>";
+    echo $persona . ": " . $datos . "<br>";
 }
 
 echo "<br>";
@@ -38,7 +38,7 @@ echo "<br>";
 $datos_personas["Edad"] = 24;
 
 foreach($datos_personas as $persona => $datos){
-    echo $datos . "<br>";
+    echo $persona . ": " . $datos . "<br>";
 }
 
 echo "<br>";
