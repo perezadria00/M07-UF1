@@ -9,13 +9,15 @@ if (!isset($_SESSION['soda'])) {
     $_SESSION['soda'] = 0;
 }
 
-// Procesar el formulario
-if ($_SERVER['REQUEST_METHOD'] === 'POST') { //Tipo de petición
-    $worker = $_POST['name'];
-    $product = $_POST['product'];            //Recoger los valores
-    $quantity = (int)$_POST['quantity']; 
+$error = ''; // Variable para almacenar el mensaje de error
 
-    // Agregar productos        
+// Procesar el formulario
+if ($_SERVER['REQUEST_METHOD'] === 'POST') { // Tipo de petición
+    $worker = $_POST['name'];
+    $product = $_POST['product']; // Recoger los valores
+    $quantity = (int)$_POST['quantity'];
+
+    // Agregar productos
     if (isset($_POST["add"])) {
         switch ($product) {
             case 'milk':
@@ -31,10 +33,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') { //Tipo de petición
     if (isset($_POST["remove"])) {
         switch ($product) {
             case 'milk':
-                $_SESSION['milk'] = max(0, $_SESSION['milk'] - $quantity);
+                if ($quantity > $_SESSION['milk']) {
+                    $error = "Error: You can't remove more units than available.";
+                } else {
+                    $_SESSION['milk'] = max(0, $_SESSION['milk'] - $quantity);
+                }
                 break;
             case 'soda':
-                $_SESSION['soda'] = max(0, $_SESSION['soda'] - $quantity);
+                if ($quantity > $_SESSION['soda']) {
+                    $error = "Error: You can't remove more units than available.";
+                } else {
+                    $_SESSION['soda'] = max(0, $_SESSION['soda'] - $quantity);
+                }
                 break;
         }
     }
@@ -74,5 +84,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') { //Tipo de petición
     <p>Worker: <?= htmlspecialchars($worker ?? ''); ?></p>
     <p>Milk units: <?= $_SESSION['milk']; ?></p>
     <p>Soda units: <?= $_SESSION['soda']; ?></p>
+
+    <!-- Mostrar mensaje de error si existe -->
+    <?php if ($error): ?>
+        <p style="color: red;"><?= htmlspecialchars($error); ?></p>
+    <?php endif; ?>
 </body>
 </html>
+
