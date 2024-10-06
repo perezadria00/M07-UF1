@@ -9,11 +9,13 @@ Muestra los valores del array anterior utilizando foreach.
 */
 
 
-$datos_personas = array("Nombre" => 'Sara',"Apellido" => 'Martínez',"Edad" => 24,"Ciudad" => 'Barcelona');
+$datos_personas = array("Dato 1º" => 'Sara',"Dato 2º" => 'Martínez',"Dato 3º" => 23,"Dato 4º" => 'Barcelona');
 
 foreach($datos_personas as $persona => $datos){
     echo $datos . "<br>";
 }
+
+echo "<br>";
 
 /*
 
@@ -22,10 +24,14 @@ foreach.
 
 */
 
+$datos_personas = array("Nombre" => 'Sara',"Apellido" => 'Martínez',"Edad" => 23,"Ciudad" => 'Barcelona');
+
+
 foreach($datos_personas as $persona => $datos){
     echo $persona . ": " . $datos . "<br>";
 }
 
+echo "<br>";
 
 //3. Modifica la edad del primer array a 24. Vuelve a mostrar toda su información.
 
@@ -35,11 +41,15 @@ foreach($datos_personas as $persona => $datos){
     echo $datos . "<br>";
 }
 
+echo "<br>";
+
 // 4.) Borra la ciudad del array y vuelve a mostrar toda su información usando la función var_dump. 
 
 
 $datos_personas = array("Nombre" => 'Sara',"Apellido" => 'Martínez',"Edad" => 24);
 var_dump($datos_personas);
+
+echo "<br>";
 
 /*
 
@@ -53,6 +63,8 @@ $letters = "a,b,c,d,e,f";
 $array = explode(",", $letters);
 rsort($array);
 print_r($array);
+
+echo "<br>";
 
 /*
 
@@ -71,6 +83,8 @@ arsort($notas);
 foreach($notas as $alumnos => $orden_descendente){
     echo "$alumnos: " . $orden_descendente . "<br/>";
 }
+
+echo "<br>";
 
 /*
 
@@ -93,6 +107,8 @@ foreach($notas as $alumnos => $orden_descendente){
         echo  $alumnos . "<br>";
     }
 }
+
+echo "<br>";
 
 /*
 
